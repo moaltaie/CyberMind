@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تسجيل الدخول</title>
+<style>
+body {
+    font-family: Arial;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.box {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 6px;
+}
+input, button {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+}
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h3>تسجيل الدخول</h3>
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="saveData()">دخول</button>
+</div>
+
+<script>
+function saveData() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let data = {
+        username: username,
+        password: password,
+        date: new Date().toLocaleString()
+    };
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push(data);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("تم تسجيل البيانات محلياً في متصفحك");
+}
+</script>
+
+</body>
+</html>
